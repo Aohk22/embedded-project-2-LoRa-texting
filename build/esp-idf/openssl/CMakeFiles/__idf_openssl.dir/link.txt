@@ -1,0 +1,2 @@
+/usr/bin/ar qc libopenssl.a CMakeFiles/__idf_openssl.dir/library/ssl_cert.c.o CMakeFiles/__idf_openssl.dir/library/ssl_lib.c.o CMakeFiles/__idf_openssl.dir/library/ssl_methods.c.o CMakeFiles/__idf_openssl.dir/library/ssl_pkey.c.o CMakeFiles/__idf_openssl.dir/library/ssl_stack.c.o CMakeFiles/__idf_openssl.dir/library/ssl_x509.c.o CMakeFiles/__idf_openssl.dir/platform/ssl_pm.c.o CMakeFiles/__idf_openssl.dir/platform/ssl_port.c.o
+/usr/bin/ranlib libopenssl.a

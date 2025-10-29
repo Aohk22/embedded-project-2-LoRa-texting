@@ -1,0 +1,2 @@
+/usr/bin/ar qc libesp_ringbuf.a CMakeFiles/__idf_esp_ringbuf.dir/ringbuf.c.o
+/usr/bin/ranlib libesp_ringbuf.a

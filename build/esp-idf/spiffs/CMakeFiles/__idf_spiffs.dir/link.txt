@@ -1,0 +1,2 @@
+/usr/bin/ar qc libspiffs.a CMakeFiles/__idf_spiffs.dir/esp_spiffs.c.o CMakeFiles/__idf_spiffs.dir/spiffs_api.c.o CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_cache.c.o CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_check.c.o CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_gc.c.o CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_hydrogen.c.o CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_nucleus.c.o
+/usr/bin/ranlib libspiffs.a

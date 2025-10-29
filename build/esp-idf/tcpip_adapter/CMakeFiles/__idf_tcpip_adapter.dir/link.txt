@@ -1,0 +1,2 @@
+/usr/bin/ar qc libtcpip_adapter.a CMakeFiles/__idf_tcpip_adapter.dir/esp_netif.c.o CMakeFiles/__idf_tcpip_adapter.dir/event_handlers.c.o CMakeFiles/__idf_tcpip_adapter.dir/tcpip_adapter_lwip.c.o
+/usr/bin/ranlib libtcpip_adapter.a

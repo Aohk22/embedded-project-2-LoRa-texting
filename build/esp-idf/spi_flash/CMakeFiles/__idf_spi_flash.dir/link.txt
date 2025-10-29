@@ -1,0 +1,2 @@
+/usr/bin/ar qc libspi_flash.a CMakeFiles/__idf_spi_flash.dir/src/partition.c.o CMakeFiles/__idf_spi_flash.dir/src/spi_flash_raw.c.o CMakeFiles/__idf_spi_flash.dir/src/spi_flash.c.o
+/usr/bin/ranlib libspi_flash.a

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libesp-tls.a "CMakeFiles/__idf_esp-tls.dir/esp_tls.c.o" "CMakeFiles/__idf_esp-tls.dir/esp_tls_mbedtls.c.o"
+/usr/bin/ranlib libesp-tls.a

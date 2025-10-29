@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/tkl/my_files/projects_embedded/text_over_lora/source_code/build/CMakeFiles/mconf-idf"
+		},
+		{
+			"file" : "/home/tkl/my_files/projects_embedded/text_over_lora/source_code/build/CMakeFiles/mconf-idf.rule"
+		},
+		{
+			"file" : "/home/tkl/my_files/projects_embedded/text_over_lora/source_code/build/CMakeFiles/mconf-idf-complete.rule"
+		},
+		{
+			"file" : "/home/tkl/my_files/projects_embedded/text_over_lora/source_code/build/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-build.rule"
+		},
+		{
+			"file" : "/home/tkl/my_files/projects_embedded/text_over_lora/source_code/build/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-configure.rule"
+		},
+		{
+			"file" : "/home/tkl/my_files/projects_embedded/text_over_lora/source_code/build/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-download.rule"
+		},
+		{
+			"file" : "/home/tkl/my_files/projects_embedded/text_over_lora/source_code/build/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-install.rule"
+		},
+		{
+			"file" : "/home/tkl/my_files/projects_embedded/text_over_lora/source_code/build/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-mkdir.rule"
+		},
+		{
+			"file" : "/home/tkl/my_files/projects_embedded/text_over_lora/source_code/build/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-patch.rule"
+		},
+		{
+			"file" : "/home/tkl/my_files/projects_embedded/text_over_lora/source_code/build/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"mconf-idf"
+		],
+		"name" : "mconf-idf"
+	}
+}

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libtcp_transport.a CMakeFiles/__idf_tcp_transport.dir/transport.c.o CMakeFiles/__idf_tcp_transport.dir/transport_ssl.c.o CMakeFiles/__idf_tcp_transport.dir/transport_tcp.c.o CMakeFiles/__idf_tcp_transport.dir/transport_ws.c.o CMakeFiles/__idf_tcp_transport.dir/transport_utils.c.o
+/usr/bin/ranlib libtcp_transport.a

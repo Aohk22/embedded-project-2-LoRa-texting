@@ -1,0 +1,2 @@
+/usr/bin/ar qc libesp_gdbstub.a CMakeFiles/__idf_esp_gdbstub.dir/src/gdbstub.c.o CMakeFiles/__idf_esp_gdbstub.dir/src/packet.c.o CMakeFiles/__idf_esp_gdbstub.dir/esp8266/gdbstub_esp8266.c.o CMakeFiles/__idf_esp_gdbstub.dir/xtensa/gdbstub_xtensa.c.o
+/usr/bin/ranlib libesp_gdbstub.a

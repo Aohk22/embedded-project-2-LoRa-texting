@@ -25,6 +25,10 @@ void lora_init(lora_config_t *lr_cf) {
 
   lora_reg_write(REG_FIFO_RX_BASE, lr_cf->regPage.fifoRxBase);
   lora_reg_write(REG_FIFO_TX_BASE, lr_cf->regPage.fifoTxBase);
+
+  lora_reg_write(REG_LNA, lr_cf->regRfBlocks.lna.val);
+  lora_reg_write(REG_PA_CONFIG, lr_cf->regRfBlocks.paConfig.val);
+  lora_reg_write(REG_MODEM_CONF_3, lr_cf->regPage.modemConfig3.val);
 }
 
 void lora_recv(uint8_t **recvArr) {}
@@ -36,16 +40,17 @@ void lora_reg_write(uint8_t addr, uint8_t data) {
   gpio_set_level(CS, 1);
 }
 
-void lora_reg_read(uint8_t addr, uint8_t *recv) {
-  *recv = 0;
+uint8_t lora_reg_read(uint8_t addr) {
+  uint8_t recv = 0;
   gpio_set_level(CS, 0);
   spi_send_byte(0x7f & addr);
-  spi_recv_byte(recv);
+  spi_recv_byte(&recv);
   gpio_set_level(CS, 1);
+  return recv;
 }
 
 void lora_set_tx_data(uint8_t txAddr, uint8_t *transArr, uint8_t l) {
-  // fifo addr pointer should auto increment every write.
+  // mem addr should inc (auto), but fifo pointer for spi should stay the same.
   gpio_set_level(CS, 0);
   spi_send_byte(0x80 | txAddr);
   for (int i = 0; i < l; i++) {
@@ -60,44 +65,22 @@ void lora_set_mode(lora_device_modes_t mode) {
   lora_reg_write(REG_OP_MODE, curr_reg);
 }
 
-void lora_set_fifo_ptr(uint8_t addr) {
-  // todo: remove.
-  lora_reg_write(REG_FIFO_ADDR, addr);
-}
+void lora_set_fifo_ptr(uint8_t addr) { lora_reg_write(REG_FIFO_ADDR, addr); }
 
-void lora_set_payload_len(uint8_t len) {
-  // todo: remove.
-  lora_reg_write(REG_PAYLOAD_LEN, len);
-}
+void lora_set_payload_len(uint8_t len) { lora_reg_write(REG_PAYLOAD_LEN, len); }
 
 uint32_t lora_get_frequency() {
   uint8_t msb, mid, lsb;
-  lora_reg_read(REG_FR_MSB, &msb);
-  lora_reg_read(REG_FR_MID, &mid);
-  lora_reg_read(REG_FR_LSB, &lsb);
+  msb = lora_reg_read(REG_FR_MSB);
+  mid = lora_reg_read(REG_FR_MID);
+  lsb = lora_reg_read(REG_FR_LSB);
   return (msb << 8 * 2) | (mid << 8) | lsb;
 }
 
-uint8_t lora_get_rx_base(void) {
-  uint8_t base;
-  lora_reg_read(REG_FIFO_RX_BASE, &base);
-  return base;
-}
+uint8_t lora_get_rx_base(void) { return lora_reg_read(REG_FIFO_RX_BASE); }
 
-uint8_t lora_get_tx_base(void) {
-  uint8_t base;
-  lora_reg_read(REG_FIFO_TX_BASE, &base);
-  return base;
-}
+uint8_t lora_get_tx_base(void) { return lora_reg_read(REG_FIFO_TX_BASE); }
 
-uint8_t lora_get_mode(void) {
-  uint8_t mode;
-  lora_reg_read(REG_OP_MODE, &mode);
-  return mode;
-}
+uint8_t lora_get_mode(void) { return lora_reg_read(REG_OP_MODE); }
 
-uint8_t lora_get_fifo_ptr(void) {
-  uint8_t addr;
-  lora_reg_read(REG_FIFO_ADDR, &addr);
-  return addr;
-}
+uint8_t lora_get_fifo_ptr(void) { return lora_reg_read(REG_FIFO_ADDR); }

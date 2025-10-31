@@ -1,2 +1,0 @@
-/usr/bin/ar qc libnewlib.a CMakeFiles/__idf_newlib.dir/src/esp_malloc.c.o CMakeFiles/__idf_newlib.dir/src/locks.c.o CMakeFiles/__idf_newlib.dir/src/random.c.o CMakeFiles/__idf_newlib.dir/src/reent_init.c.o CMakeFiles/__idf_newlib.dir/src/select.c.o CMakeFiles/__idf_newlib.dir/src/syscall.c.o CMakeFiles/__idf_newlib.dir/src/termios.c.o CMakeFiles/__idf_newlib.dir/src/time.c.o
-/usr/bin/ranlib libnewlib.a

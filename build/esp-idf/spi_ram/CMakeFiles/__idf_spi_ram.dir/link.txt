@@ -1,2 +1,0 @@
-/usr/bin/ar qc libspi_ram.a CMakeFiles/__idf_spi_ram.dir/spi_ram.c.o CMakeFiles/__idf_spi_ram.dir/spi_ram_fifo.c.o
-/usr/bin/ranlib libspi_ram.a

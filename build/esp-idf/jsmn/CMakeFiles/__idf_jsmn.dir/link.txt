@@ -1,2 +1,0 @@
-/usr/bin/ar qc libjsmn.a CMakeFiles/__idf_jsmn.dir/src/jsmn.c.o
-/usr/bin/ranlib libjsmn.a

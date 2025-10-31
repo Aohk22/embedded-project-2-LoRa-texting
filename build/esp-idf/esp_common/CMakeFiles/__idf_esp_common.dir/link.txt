@@ -1,2 +1,0 @@
-/usr/bin/ar qc libesp_common.a CMakeFiles/__idf_esp_common.dir/src/stack_check.c.o CMakeFiles/__idf_esp_common.dir/src/esp_err_to_name.c.o
-/usr/bin/ranlib libesp_common.a

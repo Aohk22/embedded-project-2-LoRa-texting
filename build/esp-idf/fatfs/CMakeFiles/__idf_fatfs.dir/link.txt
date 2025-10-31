@@ -1,2 +1,0 @@
-/usr/bin/ar qc libfatfs.a CMakeFiles/__idf_fatfs.dir/diskio/diskio.c.o CMakeFiles/__idf_fatfs.dir/diskio/diskio_rawflash.c.o CMakeFiles/__idf_fatfs.dir/diskio/diskio_wl.c.o CMakeFiles/__idf_fatfs.dir/src/ff.c.o CMakeFiles/__idf_fatfs.dir/port/freertos/ffsystem.c.o CMakeFiles/__idf_fatfs.dir/src/ffunicode.c.o CMakeFiles/__idf_fatfs.dir/vfs/vfs_fat.c.o CMakeFiles/__idf_fatfs.dir/vfs/vfs_fat_spiflash.c.o
-/usr/bin/ranlib libfatfs.a

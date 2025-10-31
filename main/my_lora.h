@@ -17,8 +17,18 @@
 #define REG_LNA 0x0c
 
 #define REG_IRQ_FLAGS 0x12
+#define REG_IRQ_RX_TIMEOUT 7
+#define REG_IRQ_RX_DONE 6
+#define REG_IRQ_PAYLOAD_CRC_ERR 5
+#define REG_IRQ_VALID_HEADER 4
+#define REG_IRQ_TX_DONE 3
+#define REG_IRQ_CAD_DONE 2
+#define REG_IRQ_FHSS_CHG_CHNNL 1
+#define REG_IRQ_CAD_DETECT 0
 
 #define REG_PAYLOAD_LEN 0x22
+#define REG_MODEM_CONF_3 0x26
+#define REG_SYNC_WORD 0x39
 
 typedef enum {
   MODE_SLEEP = 0,
@@ -73,17 +83,27 @@ typedef struct {
   uint8_t fifoRxBase;
   uint8_t fifoRxCurr;
   lora_irqf_t irqFlagMask;
+  union {
+    uint8_t val;
+    struct {
+      uint8_t _reserved : 2;
+      uint8_t agcAutoOn : 1;
+      uint8_t lowDataRateOpt : 1;
+      uint8_t _unused : 4;
+    };
+  } modemConfig3;
 } lora_page_t;
 
 typedef struct {
   union {
     uint8_t val;
     struct {
-      uint8_t paSelect : 1;
-      uint8_t maxPower : 3;
       uint8_t outputPower : 4;
+      uint8_t maxPower : 3;
+      uint8_t paSelect : 1;
     };
   } paConfig;
+
   union {
     uint8_t val;
     struct {
@@ -92,6 +112,7 @@ typedef struct {
       uint8_t paRamp : 4;
     };
   } paRamp;
+
   union {
     uint8_t val;
     struct {
@@ -104,18 +125,18 @@ typedef struct {
   union {
     uint8_t val;
     struct {
-      uint8_t lnaGain : 3;
-      uint8_t lnaBoostLf : 2;
-      uint8_t _reserved : 1;
       uint8_t lnaBoostHf : 2;
+      uint8_t _reserved : 1;
+      uint8_t lnaBoostLf : 2;
+      uint8_t lnaGain : 3;
     };
   } lna;
 } lora_rf_blocks_t;
 
 typedef struct {
   lora_common_t regCommon;
-  lora_page_t regPage;
   lora_rf_blocks_t regRfBlocks;
+  lora_page_t regPage;
 } lora_config_t;
 
 void lora_init(lora_config_t *lr_cf);
@@ -123,7 +144,7 @@ void lora_init(lora_config_t *lr_cf);
 void lora_recv(uint8_t **recvArr);
 
 void lora_reg_write(uint8_t addr, uint8_t data);
-void lora_reg_read(uint8_t addr, uint8_t *recv);
+uint8_t lora_reg_read(uint8_t addr);
 void lora_set_mode(lora_device_modes_t mode);
 void lora_set_tx_data(uint8_t txAddr, uint8_t *transArr, uint8_t l);
 void lora_set_fifo_ptr(uint8_t addr);

@@ -1,2 +1,0 @@
-/usr/bin/ar qc libheap.a CMakeFiles/__idf_heap.dir/src/esp_heap_caps.c.o CMakeFiles/__idf_heap.dir/src/esp_heap_trace.c.o CMakeFiles/__idf_heap.dir/port/esp8266/esp_heap_init.c.o
-/usr/bin/ranlib libheap.a

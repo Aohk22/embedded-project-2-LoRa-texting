@@ -1,2 +1,0 @@
-/usr/bin/ar qc libesp_http_server.a CMakeFiles/__idf_esp_http_server.dir/src/httpd_main.c.o CMakeFiles/__idf_esp_http_server.dir/src/httpd_parse.c.o CMakeFiles/__idf_esp_http_server.dir/src/httpd_sess.c.o CMakeFiles/__idf_esp_http_server.dir/src/httpd_txrx.c.o CMakeFiles/__idf_esp_http_server.dir/src/httpd_uri.c.o CMakeFiles/__idf_esp_http_server.dir/src/util/ctrl_sock.c.o
-/usr/bin/ranlib libesp_http_server.a

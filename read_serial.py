@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import serial
+import sys
 from pprint import pprint
 
 ser = serial.Serial(
@@ -15,4 +16,9 @@ ser = serial.Serial(
 while 1:
     response = ser.readline()
     if response:
-        pprint(response)
+        if sys.argv[1] == '0':
+            print(response.decode(), end='')
+        elif sys.argv[1] == '1':
+            pprint(response)
+        else:
+            print('incorrect arguments')

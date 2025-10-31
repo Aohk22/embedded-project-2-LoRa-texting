@@ -1,2 +1,0 @@
-/usr/bin/ar qc libwear_levelling.a CMakeFiles/__idf_wear_levelling.dir/Partition.cpp.o CMakeFiles/__idf_wear_levelling.dir/SPI_Flash.cpp.o CMakeFiles/__idf_wear_levelling.dir/WL_Ext_Perf.cpp.o CMakeFiles/__idf_wear_levelling.dir/WL_Ext_Safe.cpp.o CMakeFiles/__idf_wear_levelling.dir/WL_Flash.cpp.o CMakeFiles/__idf_wear_levelling.dir/crc32.cpp.o CMakeFiles/__idf_wear_levelling.dir/wear_levelling.cpp.o
-/usr/bin/ranlib libwear_levelling.a

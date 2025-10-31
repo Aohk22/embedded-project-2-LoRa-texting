@@ -16,11 +16,10 @@ void app_main(void) {
   char message[] = "Hello World!";
   uint8_t len = strlen(message);
   uint8_t i;
-  uint8_t opMode, rxBase, txBase;
-  uint32_t freq;
-  lora_config_t lr_cf;
+  uint8_t txBase;
+  lora_config_t lr_cf = {0};
 
-  lr_cf.regCommon.mode.longRange = 0b1;
+  lr_cf.regCommon.mode.longRange = 0b1; // long range mode.
   lr_cf.regCommon.mode.accessSharedReg = 0b0;
   lr_cf.regCommon.mode._ = 0b00;
   lr_cf.regCommon.mode.lowFrequency = 0b1;
@@ -28,54 +27,33 @@ void app_main(void) {
   lr_cf.regCommon.frequency.msb = 0xe4;
   lr_cf.regCommon.frequency.mid = 0xc0;
   lr_cf.regCommon.frequency.lsb = 0x00;
-
   lr_cf.regPage.fifoRxBase = 0x00;
-  lr_cf.regPage.fifoTxBase = 0x80;
-
-  // lr_cf.regRfBlocks.
+  lr_cf.regPage.fifoTxBase = 0x00;
 
   lora_init(&lr_cf);
 
-  txBase = lora_get_tx_base();
-  lora_set_fifo_ptr(txBase); // for writes auto increment.
-  lora_set_tx_data(txBase, (uint8_t *)message, len);
-  lora_set_payload_len(len);
-  // lora_set_mode(MODE_TX);
-  ESP_LOGI(TAG, "fifoPtr %x", lora_get_fifo_ptr());
-  uint8_t dbugStr[13];
-  // fifo e.g. queue so no need for incing addr.
-  // now fifo mode makes sense.
-  uint8_t addr = 0x80;
-  for (int i = 0; i < 12; i++) {
-    lora_reg_read(addr, &dbugStr[i]);
-  }
-  ESP_LOGI(TAG, "in fifo: %s", dbugStr);
+  // debug section.
+  ESP_LOGI(TAG, "lna: %x", lora_reg_read(REG_LNA));
+  ESP_LOGI(TAG, "paConfig: %x", lora_reg_read(REG_PA_CONFIG));
+  ESP_LOGI(TAG, "modemConfig3: %x", lora_reg_read(REG_MODEM_CONF_3));
+  // end debug section.
 
   i = 0;
+  txBase = lora_get_tx_base();
   while (1) {
-    // uint8_t paRamp;
-    // uint8_t irqFlags = 0;
-    // uint8_t flagTxDone;
-    // uint8_t fifoPtr;
-    // ESP_LOGI(TAG, "loop number %d -------", i);
-    // lora_reg_read(REG_OP_MODE, &opMode);
-    // lora_reg_read(REG_PA_RAMP, &paRamp);
-    // lora_reg_read(REG_IRQ_FLAGS, &flagTxDone);
-    // lora_reg_read(REG_FIFO_ADDR, &fifoPtr);
-    // lora_set_mode(MODE_TX);
-    // flagTxDone = irqFlags & 0x08;
-    // if (flagTxDone) { // poll flag
-    //   lora_reg_write(REG_IRQ_FLAGS, 0x08);
-    // }
-    //
-    // freq = lora_get_frequency();
-    // rxBase = lora_get_rx_base();
-    //
-    // // ESP_LOGI(TAG, "paRamp %x", paRamp);
-    // ESP_LOGI(TAG, "RegOpMode %x", opMode);
-    // ESP_LOGI(TAG, "txDone %x", flagTxDone);
-    // ESP_LOGI(TAG, "fifoPtr after %x", txBase);
-    // i++;
-    vTaskDelay(3000 / portTICK_PERIOD_MS);
+    lora_set_fifo_ptr(txBase); // for spi.
+    lora_set_tx_data(txBase, (uint8_t *)message, len);
+    lora_set_payload_len(len);
+    lora_set_fifo_ptr(txBase);
+    ESP_LOGI(TAG, "setting TX mode.");
+    lora_set_mode(MODE_TX);
+    ESP_LOGI(TAG, "waiting for tx done flag...");
+    while (!(lora_reg_read(REG_IRQ_FLAGS) & 1 << REG_IRQ_TX_DONE)) {
+      ESP_LOGI(TAG, "polling flag.");
+      vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
+    ESP_LOGI(TAG, "flag triggered, writing 1 to flag.");
+    lora_reg_write(REG_IRQ_FLAGS, 1 << REG_IRQ_TX_DONE);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
 }
